@@ -7,7 +7,7 @@ const {
   writeData,
   pushGroup,
   duplicate,
-} = require("../helpers/helper");
+} = require("./helpers/helper");
 
 const app = express();
 const router = express.Router();
