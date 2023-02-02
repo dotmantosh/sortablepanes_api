@@ -10,37 +10,37 @@ const {
 } = require("./helpers/helper");
 
 const app = express();
-const router = express.Router();
+
 app.use(express.json());
 app.use(logger("dev"));
 app.use(cors());
 
-router.get("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send({ status: "Active" });
 });
 
-router.get("/api/data", (req, res) => {
+app.get("/api/data", (req, res) => {
   const data = readData();
   res.send(data);
 });
 
-router.post("/api/data", (req, res) => {
+app.post("/api/data", (req, res) => {
   writeData(req.body);
   const data = readData();
   res.send(data);
 });
 
-router.get("/api/data/download", (req, res) => {
+app.get("/api/data/download", (req, res) => {
   res.download("../pane.json", "pane.json");
 });
 
 /* Panes */
-router.get("/api/panes", (req, res) => {
+app.get("/api/panes", (req, res) => {
   res.send({ status: "Active" });
 });
 
 /* Add a group */
-/* router.post("/api/data/group", (req, res) => {
+/* app.post("/api/data/group", (req, res) => {
   if (!req.body.order) {
     return res.status(400).send({ message: "order is required" });
   }
@@ -55,17 +55,17 @@ router.get("/api/panes", (req, res) => {
 }); */
 
 /* Duplicate */
-router.post("/api/data/pane/:paneId", (req, res) => {
+app.post("/api/data/pane/:paneId", (req, res) => {
   const newData = duplicate(req.params.paneId, req.query.indexOfOrder);
   res.send(newData);
 });
 
 /* Edit pane */
-router.put("/api/groups/:groupId/pane/:paneId", (req, res) => {
+app.put("/api/groups/:groupId/pane/:paneId", (req, res) => {
   res.send({ status: "Active" });
 });
 
-router.delete("/api/groups/:groupId/pane/:paneId", (req, res) => {
+app.delete("/api/groups/:groupId/pane/:paneId", (req, res) => {
   res.send({ status: "Active" });
 });
 const PORT = process.env.PORT || 5000;
