@@ -32,7 +32,7 @@ const duplicate = (paneId, indexOfOrder) => {
   };
   const key = pane.order.indexOf(indexOfOrder);
   pane.order.splice(key + 1, 0, (Math.max(...pane.order) + 1).toString());
-
+  writeData(newData);
   return newData;
 };
 

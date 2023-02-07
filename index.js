@@ -31,7 +31,7 @@ app.post("/api/data", (req, res) => {
 });
 
 app.get("/api/data/download", (req, res) => {
-  res.download("../pane.json", "pane.json");
+  res.download("./pane.json", "pane.json");
 });
 
 /* Panes */
