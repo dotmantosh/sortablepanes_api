@@ -30,6 +30,10 @@ app.post("/api/data", (req, res) => {
   res.send(data);
 });
 
+app.post("/api/data/return", (req, res) => {
+  res.send(req.body);
+});
+
 app.get("/api/data/download", (req, res) => {
   res.download("./pane.json", "pane.json");
 });
